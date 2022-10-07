@@ -15,4 +15,25 @@ async function welcome() {
   const rainbowTitle = chalkAnimation.rainbow(
     "Who wants to be a Javascript Millionaire? \n"
   );
+
+  await sleep();
+  rainbowTitle.stop();
+  console.log(`${chalk.bgBlue("How to play")}
+  IF you get a question wrong i will ${chalk.bgRed("End")}
+  So get all the questions right👍`);
 }
+
+await welcome();
+
+async function askName() {
+  const answers = await inquirer.prompt({
+    name: "player_name",
+    type: "input",
+    message: "Whats your name?",
+    default() {
+      return "Steve😃";
+    },
+  });
+  playerName = answers.player_name;
+}
+await askName();
