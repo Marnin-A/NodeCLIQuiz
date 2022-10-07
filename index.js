@@ -23,8 +23,6 @@ async function welcome() {
   So get all the questions right👍`);
 }
 
-await welcome();
-
 async function askName() {
   const answers = await inquirer.prompt({
     name: "player_name",
@@ -36,7 +34,6 @@ async function askName() {
   });
   playerName = answers.player_name;
 }
-await askName();
 
 async function question1() {
   const answers = await inquirer.prompt({
@@ -62,7 +59,19 @@ async function handleAnswer(isCorrent) {
       text: `Nice work ${playerName}. That's the right answer`,
     });
   } else {
-    spinner.error({ text: `😐 GAme over, you lose ${playerName}!` });
+    spinner.error({ text: `😐 Game over ${playerName}, you lose!` });
     process.exit(1);
   }
 }
+
+function winner() {
+  console.clear();
+  const msg = `Congratulations, ${playerName}!\n $1,000,000`;
+
+  figlet(msg, (err, data) => {
+    console.log(gradient.pastel.multiline(data));
+  });
+}
+await welcome();
+await askName();
+await question1();
