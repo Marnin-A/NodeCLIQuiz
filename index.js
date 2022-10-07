@@ -37,3 +37,32 @@ async function askName() {
   playerName = answers.player_name;
 }
 await askName();
+
+async function question1() {
+  const answers = await inquirer.prompt({
+    name: "question1",
+    type: "list",
+    message: "Javascript was created in 10 days then released on \n",
+    choices: [
+      "May 23rd, 1995",
+      "Nov 24th, 1995",
+      "Dec 4th, 1995",
+      "Dec 17th, 1996",
+    ],
+  });
+  return handleAnswer(answers.question1 == "Dec 4th, 1995");
+}
+
+async function handleAnswer(isCorrent) {
+  const spinner = createSpinner("Checking answer...").start();
+  await sleep();
+
+  if (isCorrent) {
+    spinner.success({
+      text: `Nice work ${playerName}. That's the right answer`,
+    });
+  } else {
+    spinner.error({ text: `😐 GAme over, you lose ${playerName}!` });
+    process.exit(1);
+  }
+}
