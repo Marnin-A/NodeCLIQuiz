@@ -5,29 +5,10 @@ import gradient from "gradient-string";
 import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import { createSpinner } from "nanospinner";
-import fetch from "node-fetch";
-//API URLs
-const Easyurl =
-  "https://opentdb.com/api.php?amount=1&category=18&difficulty=easy&type=multiple";
-const Midurl = "";
-const Hardurl = "";
 
 let data; //Variable for fetched data
 
-//Fetch function to get data from the API
-async function getTrivia() {
-  let response = await fetch(Easyurl);
-  data = await response.json();
-  return data;
-}
-getTrivia().then((data) => console.log(data));
-// fetch(Easyurl)
-//   .then((res) => res.json())
-//   .then((json) => console.log(json.results))
-//   .catch((error) => console.error(error));
-
 let playerName;
-// let QuestionTxt = json.results.question.;
 
 //Helper Function to display the intro text for 2seconds
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
